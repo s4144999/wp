@@ -1,0 +1,81 @@
+/* === Google Fonts === */
+body {
+    font-family: 'Ysabeau SC', sans-serif;
+    background-color: #fff5f8;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+/* === Headings === */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Libre Baskerville', serif;
+    color: #cd4f07;
+}
+
+/* === Navbar === */
+.navbar {
+    background-color: #cd4f07;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.nav-link {
+    color: white !important;
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.search-form input {
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+
+/* === Carousel === */
+.carousel-caption {
+    background-color: rgba(51, 51, 51, 0.7);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+/* === Skill Grid === */
+.skill-card {
+    text-align: center;
+    padding: 15px;
+}
+
+.skill-card h5 {
+    font-family: 'Libre Baskerville', serif;
+    color: #cd4f07;
+}
+
+.skill-card .btn {
+    background-color: #cd4f07;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-top: 10px;
+}
+
+.skill-card .btn:hover {
+    background-color: #6b5b95;
+}
+
+/* === Footer === */
+footer {
+    background: linear-gradient(to right, #cd4f07, #f6978e);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 30px;
+}
