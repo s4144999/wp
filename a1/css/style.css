@@ -1,6 +1,8 @@
 html,
 body {
     height: 100%;
+    padding: 0%;
+    margin: 0%;
 }
 
 /* === Google Fonts === */
@@ -15,7 +17,7 @@ body {
 
 main {
     flex: 1;
-    /* pushes footer to the bottom */
+
 }
 
 /* === Headings === */
@@ -34,11 +36,11 @@ h5 {
 }
 
 .navbar-brand img {
-    height: 50px;
+    height: 65px;
 }
 
 .nav-link {
-    color: white !important;
+    color: white;
     margin-right: 15px;
     font-weight: 600;
 }
@@ -82,11 +84,30 @@ h5 {
     background-color: #6b5b95;
 }
 
+.table thead tr {
+    background-color: #f0f0f0;
+    /* Light grey header */
+    color: #333333;
+    /* Dark text */
+    font-weight: bold;
+}
+
+/* Table Body - Alternating Row Colors */
+.table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* White */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Light grey */
+}
+
 /* === Footer === */
 footer {
     background: linear-gradient(to right, #cd4f07, #f6978e);
     color: white;
     text-align: center;
     padding: 10px 0;
-
+    margin-top: auto;
 }
