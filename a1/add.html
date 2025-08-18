@@ -77,12 +77,14 @@
                 <option value="Expert">Expert</option>
             </select>
         </div>
-        <div class="mb-3">
-            <label for="image" class="form-label required">Skill Image</label>
-            <input type="file" id="image" name="image" class="form-control w-100" accept="image/*" required>
+        <label for="image" class="form-label required">Skill Image</label>
+        <input type="file" id="image" name="image" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" required>
+
+        <div class="invalid-feedback">
+            Only JPG, PNG, GIF, or WEBP images are allowed (no SVG). Max 5 MB.
         </div>
 
-        <button id="submitBtn" type="submit" class="btn btn-brand btn-lg px-4">Submit</button>
+        <button id="submitBtn" type="submit" class="btn btn-brand mt-3">Submit</button>
 
 
     </main>
