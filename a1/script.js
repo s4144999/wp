@@ -9,3 +9,4 @@ document.addEventListener('click', (e) => {
     imgEl.alt = a.dataset.title || '';
     titleEl.textContent = a.dataset.title || '';
 });
+

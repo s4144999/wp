@@ -47,8 +47,42 @@
         <h2 class="mb-4">Add New Skill</h2>
         <div class="mb-3">
             <label for="title" class="form-label required">Title</label>
-            <input id="title" name="title" type="text" class="form-control mb-3" required>
+            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Enter skill title"
+                required>
         </div>
+
+        <div class="mb-3">
+            <label for="Enter Description" class="form-label required"> Description</label>
+            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Enter Description"
+                required>
+
+        </div>
+        <div class="mb-3">
+            <label for="Category" class="form-label required">Category</label>
+            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Enter Skill Category"
+                required>
+
+        </div>
+        <div class="mb-3">
+            <label for="Rate" class="form-label required">Rate PER Hour($)</label>
+            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Rate Per Hour" required>
+
+        </div>
+        <div class="mb-3">
+            <label for="level" class="form-label required">Level</label>
+            <select id="level" name="level" class="form-select" required>
+                <option value="" disabled selected>Please select</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Expert">Expert</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label required">Skill Image</label>
+            <input type="file" id="image" name="image" class="form-control w-100" accept="image/*" required>
+        </div>
+
+        <button id="submitBtn" type="submit" class="btn btn-brand btn-lg px-4">Submit</button>
 
 
     </main>
