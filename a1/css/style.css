@@ -127,6 +127,30 @@ h5 {
     margin-right: auto;
 }
 
+.add-form {
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.required::after {
+    content: " *";
+    color: #cd4f07;
+}
+
+/* Brand button (from earlier) */
+.btn-brand {
+    background-color: #cd4f07;
+    color: #fff;
+    border: none;
+    padding: .6rem 1.25rem;
+    border-radius: .5rem;
+    font-weight: 600;
+}
+
+.btn-brand:hover {
+    background-color: #6b5b95;
+}
+
 /* === Footer === */
 footer {
     margin-top: auto;
