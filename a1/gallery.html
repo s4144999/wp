@@ -122,10 +122,23 @@
                     </figure>
                 </a>
             </div>
-
+            <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content gallery-modal">
+                        <div class="modal-body p-0">
+                            <img id="lightboxImg" class="img-fluid rounded-top" alt="">
+                        </div>
+                        <div class="modal-footer justify-content-between bg-light">
+                            <div id="lightboxTitle" class="fw-semibold"></div>
+                            <button type="button" class="btn btn-sm btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </main>
     <footer>
         <p>© 2025 SkillSwap. All rights reserved.</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
