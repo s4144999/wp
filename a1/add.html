@@ -24,25 +24,27 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images\SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
-            </a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="skills.html">All Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="add.html">Add Skill</a></li>
-                </ul>
-                <form class="d-flex search-form">
-                    <input class="form-control" type="search" placeholder="Search skills..." aria-label="Search" />
-                    <span class="material-icons ms-2">search</span>
-                </form>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images\SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills.html">All Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="add.html">Add Skill</a></li>
+                    </ul>
+                    <form class="d-flex search-form">
+                        <input class="form-control" type="search" placeholder="Search skills..." aria-label="Search" />
+                        <span class="material-icons ms-2">search</span>
+                    </form>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
     <main class="container py-4">
         <h2 class="mb-4">Add New Skill</h2>
         <div class="mb-3">
@@ -78,18 +80,16 @@
             </select>
         </div>
         <label for="image" class="form-label required">Skill Image</label>
-        <input type="file" id="image" name="image" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" required>
+        <input type="file" id="image" name="image" class="form-control">
 
-        <div class="invalid-feedback">
-            Only JPG, PNG, GIF, or WEBP images are allowed (no SVG). Max 5 MB.
-        </div>
+
 
         <button id="submitBtn" type="submit" class="btn btn-brand mt-3">Submit</button>
 
 
     </main>
     <footer>
-        <p>© 2025 SkillSwap. All rights reserved.</p>
+        <p>© 2025 SkillSwap. All rights reserved. Sumaj Maharjan</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
