@@ -66,6 +66,12 @@ h5 {
     border-radius: 8px;
 }
 
+.vh-50 {
+    height: 50vh;
+}
+
+html Copy Edit
+
 /* === Skill Grid === */
 .skill-card {
     text-align: center;
