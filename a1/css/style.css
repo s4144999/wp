@@ -164,6 +164,26 @@ html Copy Edit
     /* allow the user to drag taller if they want */
 }
 
+.img-hint {
+    background: #f8d7da;
+    /* soft pink */
+    border: 1px solid #f5c2c7;
+    /* slightly darker border */
+    color: #333;
+    /* readable text */
+    padding: .75rem 1rem;
+    border-radius: .5rem;
+    /* rounded corners */
+    margin-top: .6rem;
+    font-size: .95rem;
+}
+
+.img-hint strong {
+    font-variant: small-caps;
+    /* matches the look in your screenshot */
+    letter-spacing: .03em;
+}
+
 /* === Footer === */
 footer {
     margin-top: auto;

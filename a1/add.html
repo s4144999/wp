@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="images\SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
+                    s <img src="images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto">
@@ -54,20 +54,20 @@
         </div>
 
         <div class="mb-3">
-            <label for="Enter Description" class="form-label required"> Description</label>
-            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Enter Description"
-                required>
+            <label for="Enter_Description" class="form-label required"> Description</label>
+            <input id="Enter_Description" name="title" type="text" class="form-control mb-3"
+                placeholder="Enter_Description" required>
 
         </div>
         <div class="mb-3">
             <label for="Category" class="form-label required">Category</label>
-            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Enter Skill Category"
+            <input id="Category" name="title" type="text" class="form-control mb-3" placeholder="Enter Skill_Category"
                 required>
 
         </div>
         <div class="mb-3">
             <label for="Rate" class="form-label required">Rate PER Hour($)</label>
-            <input id="title" name="title" type="text" class="form-control mb-3" placeholder="Rate Per Hour" required>
+            <input id="Rate" name="title" type="number" class="form-control mb-3" placeholder="Rate Per Hour" required>
 
         </div>
         <div class="mb-3">
@@ -79,12 +79,20 @@
                 <option value="Expert">Expert</option>
             </select>
         </div>
-        <label for="image" class="form-label required">Skill Image</label>
-        <input type="file" id="image" name="image" class="form-control">
+
+        <form id="addSkillForm">
+            <label>Skill Image:
+                <!-- omit `accept` so you can pick ANY file (pdf, pptx, etc.) -->
+                <input type="file" id="image" required>
+            </label>
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- message area like your example -->
+        <div id="imgMsg" style="color:#c00; margin-top:10px;"></div>
 
 
 
-        <button id="submitBtn" type="submit" class="btn btn-brand mt-3">Submit</button>
 
 
     </main>
