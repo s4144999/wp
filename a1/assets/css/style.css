@@ -19,10 +19,9 @@ body {
 
 }
 
+/* fills the available vertical space */
 main {
     flex: 1 0 auto;
-    /* fills the available vertical space */
-
 }
 
 /* === Headings === */
@@ -32,7 +31,7 @@ h2 {
 }
 
 h5 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Libre Baskerville';
     color: #cd4f07;
 }
 
@@ -46,7 +45,7 @@ h5 {
 }
 
 .nav-link {
-    color: white;
+    color: #fff5f8;
     margin-right: 15px;
     font-weight: 600;
 }
@@ -75,27 +74,27 @@ h5 {
     position: relative;
     display: inline-block;
     width: 280px;
-    /* adjust as you like */
+
 }
 
-/* make room for the icon */
+/* makes room for the icon */
 .search-field .form-control {
     padding-left: 2.25rem;
-    /* increase if your icon is larger */
 }
 
 /* === Carousel === */
 .carousel-caption {
-    background-color: rgba(51, 51, 51, 0.7);
+    background-color: #333333;
     padding: 10px 20px;
     border-radius: 8px;
 }
 
+/* === Used so Carousel image stays at 50% of the browser screen (viewport height)=== */
 .vh-50 {
     height: 50vh;
 }
 
-html Copy Edit
+
 
 /* === Skill Grid === */
 .skill-card {
@@ -110,7 +109,7 @@ html Copy Edit
 
 .skill-card .btn {
     background-color: #cd4f07;
-    color: white;
+    color: #fff5f8;
     border-radius: 20px;
     padding: 5px 15px;
     margin-top: 10px;
@@ -120,23 +119,9 @@ html Copy Edit
     background-color: #6b5b95;
 }
 
-.table thead tr {
-    background-color: #f0f0f0;
-    /* Light grey header */
-    color: #333333;
-    /* Dark text */
-    font-weight: bold;
-}
-
-/* Table Body - Alternating Row Colors */
-.table tbody tr:nth-child(odd) {
-    background-color: #ffffff;
-    /* White */
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-    /* Light grey */
+/* === for the color of the first column=== */
+.skills-table td:first-child {
+    color: #6b5b95;
 }
 
 .gallery-item img {
@@ -147,31 +132,15 @@ html Copy Edit
     border-radius: 8px;
 }
 
-
-.divider {
-    width: 70px;
-    height: 6px;
-    background: #cd4f07;
-    border-radius: 6px;
-    opacity: .6;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.add-form {
-    max-width: 900px;
-    margin-inline: auto;
-}
-
+/* === adds a * after each title in add.html===  */
 .required::after {
     content: " *";
     color: #cd4f07;
 }
 
-
 .btn-brand {
     background-color: #cd4f07;
-    color: #fff;
+    color: #fff5f8;
     border: none;
     padding: .6rem 1.25rem;
     border-radius: .5rem;
@@ -187,26 +156,6 @@ html Copy Edit
     /* make it taller */
     resize: vertical;
     /* allow the user to drag taller if they want */
-}
-
-.img-hint {
-    background: #f8d7da;
-    /* soft pink */
-    border: 1px solid #f5c2c7;
-    /* slightly darker border */
-    color: #333;
-    /* readable text */
-    padding: .75rem 1rem;
-    border-radius: .5rem;
-    /* rounded corners */
-    margin-top: .6rem;
-    font-size: .95rem;
-}
-
-.img-hint strong {
-    font-variant: small-caps;
-    /* matches the look in your screenshot */
-    letter-spacing: .03em;
 }
 
 /* === Footer === */
