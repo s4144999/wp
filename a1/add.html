@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    s <img src="images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
+                    <img src="images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto">
@@ -56,12 +56,12 @@
         <div class="mb-3">
             <label for="Enter_Description" class="form-label required"> Description</label>
             <input id="Enter_Description" name="title" type="text" class="form-control mb-3"
-                placeholder="Enter_Description" required>
+                placeholder="Enter Description" required>
 
         </div>
         <div class="mb-3">
             <label for="Category" class="form-label required">Category</label>
-            <input id="Category" name="title" type="text" class="form-control mb-3" placeholder="Enter Skill_Category"
+            <input id="Category" name="title" type="text" class="form-control mb-3" placeholder="Enter Skill Category"
                 required>
 
         </div>
@@ -80,15 +80,15 @@
             </select>
         </div>
 
-        <form id="addSkillForm">
-            <label>Skill Image:
-                <!-- omit `accept` so you can pick ANY file (pdf, pptx, etc.) -->
-                <input type="file" id="image" required>
-            </label>
-            <button type="submit">Submit</button>
-        </form>
 
-        <!-- message area like your example -->
+
+        <div class="mb-3">
+            <form id="addSkillForm"></form>
+            <label for="image" class="form-label required">Skill Image</label>
+            <input type="file" id="image" name="image" class="form-control">
+        </div>
+        </form>
+        <button class="btn-brand" type="submit">Submit</button>
         <div id="imgMsg" style="color:#c00; margin-top:10px;"></div>
 
 
@@ -97,7 +97,7 @@
 
     </main>
     <footer>
-        <p>© 2025 SkillSwap. All rights reserved. Sumaj Maharjan</p>
+        <p>© 2025 SkillSwap. All rights reserved. Sumaj Maharjan </p>
     </footer>
     <script src="script.js" defer></script>
 </body>

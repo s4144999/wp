@@ -11,45 +11,50 @@ document.addEventListener('click', (e) => {
     titleEl.textContent = a.dataset.title || '';
 });
 
-document.getElementById("addSkillForm").addEventListener("submit", function (event) {
-    event.preventDefault();                               // ← exactly like your example
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('addSkillForm');
+    const input = document.getElementById('image');
+    const msg = document.getElementById('imgMsg');
 
-    const fileInput = document.getElementById("image");
-    const errorMsg = document.getElementById("imgMsg");
-    errorMsg.style.color = "#c00";
-    errorMsg.innerHTML = "";                              // clear message
-
-    // 1) required
-    if (!fileInput.files.length) {
-        errorMsg.innerHTML = "Please choose a file.";
-        return;
+    function isAllowedImage(file) {
+        if (!file) return false;
+        // allow jpg/jpeg, png, gif, webp; block svg
+        const okMime = /^image\/(jpeg|png|gif|webp)$/i.test(file.type);
+        const okExt = /\.(jpe?g|png|gif|webp)$/i.test(file.name);
+        return (okMime || okExt) && file.type.toLowerCase() !== 'image/svg+xml';
     }
 
-    // 2) extension test (your hint):
-    //    allow jpg / jpeg / png / gif / webp; block svg & others
-    const v = (fileInput.value || "").toLowerCase();      // e.g. C:\fakepath\pic.png
-    const isAllowed = v.match(/\.(jpg|jpeg|png|gif|webp)$/i) && !v.endsWith(".svg");
-
-    if (!isAllowed) {
-        errorMsg.innerHTML = "Only image files are allowed (JPG, JPEG, PNG, GIF, WEBP).";
-        return;
+    function showError(text) {
+        msg.textContent = text;
+        msg.style.display = 'block';
+    }
+    function clearError() {
+        msg.textContent = '';
+        msg.style.display = 'none';
     }
 
-    // success (A1: still not submitting)
-    errorMsg.style.color = "green";
-    errorMsg.innerHTML = "Validation passed (demo only).";
-});
+    // Show/clear message as soon as user picks a file
+    input.addEventListener('change', () => {
+        const f = input.files[0];
+        if (!f) { clearError(); return; }
+        if (isAllowedImage(f)) {
+            clearError();
+        } else {
+            showError('Only image files are allowed (JPG, PNG, GIF, WEBP).');
+            // optional: clear bad selection so user must pick again
+            input.value = '';
+            input.focus();
+        }
+    });
 
-// Optional: show error immediately after a non-image is picked
-document.getElementById("image").addEventListener("change", function () {
-    const errorMsg = document.getElementById("imgMsg");
-    errorMsg.style.color = "#c00";
-    errorMsg.innerHTML = "";
-
-    const v = (this.value || "").toLowerCase();
-    const bad = !v.match(/\.(jpg|jpeg|png|gif|webp)$/i) || v.endsWith(".svg");
-
-    if (this.files.length && bad) {
-        errorMsg.innerHTML = "Only image files are allowed (JPG, JPEG, PNG, GIF, WEBP).";
-    }
+    // Block submit if invalid
+    form.addEventListener('submit', (e) => {
+        const f = input.files[0];
+        if (!isAllowedImage(f)) {
+            e.preventDefault();
+            showError('Only image files are allowed (JPG, PNG, GIF, WEBP).');
+        } else {
+            clearError();
+        }
+    });
 });

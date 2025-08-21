@@ -7,7 +7,7 @@ body {
 
 /* === Google Fonts === */
 body {
-    font-family: 'Ysabeau SC', sans-serif;
+    font-family: 'Ysabeau SC';
     background-color: #fff5f8;
     color: #333333;
     margin: 0;
@@ -26,10 +26,11 @@ main {
 }
 
 /* === Headings === */
-h1,
-h2,
-h3,
-h4,
+h2 {
+    font-family: 'Libre Baskerville';
+    color: #cd4f07;
+}
+
 h5 {
     font-family: 'Libre Baskerville', serif;
     color: #cd4f07;
@@ -57,6 +58,30 @@ h5 {
 .search-form input {
     border-radius: 5px;
     padding: 4px 10px;
+}
+
+.search-field .material-icons {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: .6;
+    font-size: 20px;
+}
+
+/* create a positioning context for the icon */
+.search-field {
+    position: relative;
+    display: inline-block;
+    width: 280px;
+    /* adjust as you like */
+}
+
+/* make room for the icon */
+.search-field .form-control {
+    padding-left: 2.25rem;
+    /* increase if your icon is larger */
 }
 
 /* === Carousel === */
@@ -143,7 +168,7 @@ html Copy Edit
     color: #cd4f07;
 }
 
-/* Brand button (from earlier) */
+
 .btn-brand {
     background-color: #cd4f07;
     color: #fff;
@@ -191,7 +216,7 @@ footer {
     width: 100%;
     background: linear-gradient(to right, #cd4f07, #f6978e);
     color: white;
-    text-align: center;
+    text-align: end;
     padding: 15px 0;
 
 }
