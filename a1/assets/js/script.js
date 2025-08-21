@@ -12,19 +12,19 @@ document.addEventListener('click', (e) => {
     titleEl.textContent = a.dataset.title || '';
 });
 //validation script
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {//waits for the page to load and only runs the code after it loads up
     const form = document.getElementById('addSkillForm');
     const input = document.getElementById('image');
     const msg = document.getElementById('imgMsg');
 
     function isAllowedImage(file) {
         if (!file) return false;
-        // allow jpg/jpeg, png, gif, webp; block svg
+        // allow jpg/jpeg, png, gif, webp
         const okMime = /^image\/(jpeg|png|gif|webp)$/i.test(file.type);
         const okExt = /\.(jpe?g|png|gif|webp)$/i.test(file.name);
-        return (okMime || okExt) && file.type.toLowerCase() !== 'image/svg+xml';
+        return (okMime || okExt) && file.type.toLowerCase();
     }
-
+    //putws the error msg 
     function showError(text) {
         msg.textContent = text;
         msg.style.display = 'block';
