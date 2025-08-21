@@ -1,0 +1,222 @@
+html,
+body {
+    height: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+
+/* === Google Fonts === */
+body {
+    font-family: 'Ysabeau SC';
+    background-color: #fff5f8;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* make body a flex container */
+    flex-direction: column;
+    /* stack: nav, main, footer */
+
+}
+
+main {
+    flex: 1 0 auto;
+    /* fills the available vertical space */
+
+}
+
+/* === Headings === */
+h2 {
+    font-family: 'Libre Baskerville';
+    color: #cd4f07;
+}
+
+h5 {
+    font-family: 'Libre Baskerville', serif;
+    color: #cd4f07;
+}
+
+/* === Navbar === */
+.navbar {
+    background-color: #cd4f07;
+}
+
+.navbar-brand img {
+    height: 65px;
+}
+
+.nav-link {
+    color: white;
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.search-form input {
+    border-radius: 5px;
+    padding: 4px 10px;
+}
+
+.search-field .material-icons {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: .6;
+    font-size: 20px;
+}
+
+/* create a positioning context for the icon */
+.search-field {
+    position: relative;
+    display: inline-block;
+    width: 280px;
+    /* adjust as you like */
+}
+
+/* make room for the icon */
+.search-field .form-control {
+    padding-left: 2.25rem;
+    /* increase if your icon is larger */
+}
+
+/* === Carousel === */
+.carousel-caption {
+    background-color: rgba(51, 51, 51, 0.7);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.vh-50 {
+    height: 50vh;
+}
+
+html Copy Edit
+
+/* === Skill Grid === */
+.skill-card {
+    text-align: center;
+    padding: 15px;
+}
+
+.skill-card h5 {
+    font-family: 'Libre Baskerville', serif;
+    color: #cd4f07;
+}
+
+.skill-card .btn {
+    background-color: #cd4f07;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-top: 10px;
+}
+
+.skill-card .btn:hover {
+    background-color: #6b5b95;
+}
+
+.table thead tr {
+    background-color: #f0f0f0;
+    /* Light grey header */
+    color: #333333;
+    /* Dark text */
+    font-weight: bold;
+}
+
+/* Table Body - Alternating Row Colors */
+.table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* White */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Light grey */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+
+.divider {
+    width: 70px;
+    height: 6px;
+    background: #cd4f07;
+    border-radius: 6px;
+    opacity: .6;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add-form {
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.required::after {
+    content: " *";
+    color: #cd4f07;
+}
+
+
+.btn-brand {
+    background-color: #cd4f07;
+    color: #fff;
+    border: none;
+    padding: .6rem 1.25rem;
+    border-radius: .5rem;
+    font-weight: 600;
+}
+
+.btn-brand:hover {
+    background-color: #6b5b95;
+}
+
+.textarea-lg {
+    min-height: 220px;
+    /* make it taller */
+    resize: vertical;
+    /* allow the user to drag taller if they want */
+}
+
+.img-hint {
+    background: #f8d7da;
+    /* soft pink */
+    border: 1px solid #f5c2c7;
+    /* slightly darker border */
+    color: #333;
+    /* readable text */
+    padding: .75rem 1rem;
+    border-radius: .5rem;
+    /* rounded corners */
+    margin-top: .6rem;
+    font-size: .95rem;
+}
+
+.img-hint strong {
+    font-variant: small-caps;
+    /* matches the look in your screenshot */
+    letter-spacing: .03em;
+}
+
+/* === Footer === */
+footer {
+    margin-top: auto;
+    /* pushes footer to the bottom when content is short */
+    width: 100%;
+    background: linear-gradient(to right, #cd4f07, #f6978e);
+    color: white;
+    text-align: end;
+    padding: 15px 0;
+
+}
