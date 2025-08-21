@@ -132,7 +132,7 @@ h5 {
     border-radius: 8px;
 }
 
-/* === adds a * after each title in add.html===  */
+/* === adds a * after each label in add.html===  */
 .required::after {
     content: " *";
     color: #cd4f07;
