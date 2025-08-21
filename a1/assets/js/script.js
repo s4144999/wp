@@ -1,7 +1,8 @@
 // modal
+//grabs the image and caption of the skill for the modal
 const imgEl = document.getElementById('lightboxImg');
 const titleEl = document.getElementById('lightboxTitle');
-
+//listens for clicks in the page, if the image if clicked the model opens
 document.addEventListener('click', (e) => {
     const a = e.target.closest('a[data-bs-target="#lightboxModal"]');
     if (!a) return;
@@ -10,7 +11,7 @@ document.addEventListener('click', (e) => {
     imgEl.alt = a.dataset.title || '';
     titleEl.textContent = a.dataset.title || '';
 });
-
+//validation script
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('addSkillForm');
     const input = document.getElementById('image');

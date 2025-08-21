@@ -151,12 +151,13 @@ h5 {
     background-color: #6b5b95;
 }
 
+/* === for description box size=== */
 .textarea-lg {
-    min-height: 220px;
+    min-height: 100px;
     /* make it taller */
-    resize: vertical;
-    /* allow the user to drag taller if they want */
+
 }
+
 
 /* === Footer === */
 footer {
