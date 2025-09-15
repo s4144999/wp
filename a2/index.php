@@ -1,0 +1,130 @@
+<?php
+// index.php    
+?>
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillSwap - Home</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Ysabeau+SC&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills.html">All Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="add.html">Add Skill</a></li>
+                    </ul>
+                    <form class="d-flex search-form">
+                        <div class="search-field">
+                            <span class="material-icons">search</span>
+
+                            <input class="form-control" type="search" placeholder="Search skills..."
+                                aria-label="Search" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== Main Content ===== -->
+    <main class="container">
+        <h2 class="mb-3">SkillSwap</h2>
+        <p class="mb-4">Browse the latest skills shared by our community.</p>
+
+        <!-- ===== Carousel ===== -->
+        <div class="container-fluid px-0">
+            <div id="skillCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/skills/4.png" class="d-block w-100 vh-50 object-fit-cover"
+                            alt=" French Pastry">
+                        <div class="carousel-caption">
+                            <h5>French Pastry Making</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/skills/3.png" class="d-block w-100 vh-50 object-fit-cover" alt=" Bread Baking">
+                        <div class="carousel-caption">
+                            <h5>Artisan Bread Baking</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/skills/8.png" class="d-block w-100 vh-50 object-fit-cover" alt=" PHP Skills">
+                        <div class="carousel-caption">
+                            <h5>Intro to PHP & MySQL</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/skills/2.png" class="d-block w-100 vh-50 object-fit-cover" alt=" Guitar">
+                        <div class="carousel-caption">
+                            <h5>Intermediate Fingerstyle</h5>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#skillCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#skillCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+        <!-- ===== Skill Grid ===== -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-4 skill-card">
+                <h5>Intro to PHP & MySQL</h5>
+                <p>Rate: $55.00/hr</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4 skill-card">
+                <h5>Intermediate Fingerstyle</h5>
+                <p>Rate: $45.00/hr</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4 skill-card">
+                <h5>Artisan Bread Baking</h5>
+                <p>Rate: $25.00/hr</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4 skill-card">
+                <h5>French Pastry Making</h5>
+                <p>Rate: $50.00/hr</p>
+                <button class="btn">View Details</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <?php include 'footer.inc'; ?>
+
+</body>
+
+</html>
