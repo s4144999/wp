@@ -6,10 +6,10 @@
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="skills.html">All Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="add.html">Add Skill</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills.php">All Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.php">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link" href="add.php">Add Skill</a></li>
                     </ul>
                     <form class="d-flex search-form">
                         <div class="search-field">

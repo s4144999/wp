@@ -24,31 +24,8 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
-                </a>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="skills.html">All Skills</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="add.html">Add Skill</a></li>
-                    </ul>
-                    <form class="d-flex search-form">
-                        <div class="search-field">
-                            <span class="material-icons">search</span>
+       <?php include 'includes/header.inc'; ?>
 
-                            <input class="form-control" type="search" placeholder="Search skills..."
-                                aria-label="Search" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
     <main class="container py-3">
         <h2 class="mb-4">Add New Skill</h2>
         <div class="row g-2">
@@ -104,8 +81,7 @@
 
 
     </main>
-    <footer>
-        <p>© 2025 SkillSwap. All rights reserved. Sumaj Maharjan </p>
-    </footer>
+   <?php include 'includes/footer.inc'; ?>
+
     <script src="assets/js/script.js" defer></script>
 </body>
