@@ -57,31 +57,32 @@
         <?php
 include __DIR__ . '/includes/db_connect.inc';
 
-$sql = "SELECT title, rate_per_hr, image_path, description 
+$sql = "SELECT skill_id, title, description, rate_per_hr, image_path 
         FROM skills 
         ORDER BY created_at DESC 
         LIMIT 4";
-
 $result = $conn->query($sql);
+
 
 echo '<div class="row">';
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $id = (int)$row['skill_id']; // now guaranteed from query
+
         echo "
         <div class='col-md-3 col-sm-6 mb-4 skill-card'>
-            <img src='" . htmlspecialchars($row['image_path']) . "' 
-                 alt='" . htmlspecialchars($row['title']) . "' 
-                 class='img-fluid mb-2'>
             <h5>" . htmlspecialchars($row['title']) . "</h5>
             <p>" . htmlspecialchars($row['description']) . "</p>
             <p>Rate: $" . htmlspecialchars($row['rate_per_hr']) . "/hr</p>
-            <button class='btn'>View Details</button>
+            <a href='details.php?id={$id}' class='btn btn-primary'>View Details</a>
         </div>";
     }
 } else {
     echo "<p>No skills available yet.</p>";
 }
 echo '</div>';
+
+
 
 $conn->close();
 ?>
