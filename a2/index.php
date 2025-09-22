@@ -1,32 +1,11 @@
-<?php
-// index.php    
-?>
 <!DOCTYPE html>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SkillSwap - Home</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Ysabeau+SC&display=swap"
-        rel="stylesheet">
+<?php include 'includes/header.inc'; ?>  
 
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-</head>
 
 <body>
-    <?php include 'includes/header.inc'; ?>
+    <?php include 'includes/nav.inc'; ?>
 
     <!-- ===== Main Content ===== -->
     <main class="container">
@@ -74,27 +53,39 @@
             </div>
         </div>
         <!-- ===== Skill Grid ===== -->
-        <div class="row">
-            <div class="col-md-3 col-sm-6 mb-4 skill-card">
-                <h5>Intro to PHP & MySQL</h5>
-                <p>Rate: $55.00/hr</p>
-                <button class="btn">View Details</button>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4 skill-card">
-                <h5>Intermediate Fingerstyle</h5>
-                <p>Rate: $45.00/hr</p>
-                <button class="btn">View Details</button>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4 skill-card">
-                <h5>Artisan Bread Baking</h5>
-                <p>Rate: $25.00/hr</p>
-                <button class="btn">View Details</button>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4 skill-card">
-                <h5>French Pastry Making</h5>
-                <p>Rate: $50.00/hr</p>
-                <button class="btn">View Details</button>
-            </div>
+        <!-- ===== Skill Grid (Dynamic from DB) ===== -->
+        <?php
+include __DIR__ . '/includes/db_connect.inc';
+
+$sql = "SELECT title, rate_per_hr, image_path, description 
+        FROM skills 
+        ORDER BY created_at DESC 
+        LIMIT 4";
+
+$result = $conn->query($sql);
+
+echo '<div class="row">';
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "
+        <div class='col-md-3 col-sm-6 mb-4 skill-card'>
+            <img src='" . htmlspecialchars($row['image_path']) . "' 
+                 alt='" . htmlspecialchars($row['title']) . "' 
+                 class='img-fluid mb-2'>
+            <h5>" . htmlspecialchars($row['title']) . "</h5>
+            <p>" . htmlspecialchars($row['description']) . "</p>
+            <p>Rate: $" . htmlspecialchars($row['rate_per_hr']) . "/hr</p>
+            <button class='btn'>View Details</button>
+        </div>";
+    }
+} else {
+    echo "<p>No skills available yet.</p>";
+}
+echo '</div>';
+
+$conn->close();
+?>
+
         </div>
     </main>
 
