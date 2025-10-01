@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";   
 $pass = "";       
-$dbname = "skillswap";   // 👈 this must match the DB you created/imported
+$dbname = "skillswap";  
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 

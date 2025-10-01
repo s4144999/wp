@@ -12,48 +12,91 @@
         <h2 class="mb-3">SkillSwap</h2>
         <p class="mb-4">Browse the latest skills shared by our community.</p>
 
-        <!-- ===== Carousel ===== -->
-        <div class="container-fluid px-0">
-            <div id="skillCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="images/skills/4.png" class="d-block w-100 vh-50 object-fit-cover"
-                            alt=" French Pastry">
-                        <div class="carousel-caption">
-                            <h5>French Pastry Making</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/skills/3.png" class="d-block w-100 vh-50 object-fit-cover" alt=" Bread Baking">
-                        <div class="carousel-caption">
-                            <h5>Artisan Bread Baking</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/skills/8.png" class="d-block w-100 vh-50 object-fit-cover" alt=" PHP Skills">
-                        <div class="carousel-caption">
-                            <h5>Intro to PHP & MySQL</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/skills/2.png" class="d-block w-100 vh-50 object-fit-cover" alt=" Guitar">
-                        <div class="carousel-caption">
-                            <h5>Intermediate Fingerstyle</h5>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#skillCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#skillCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
-            </div>
-        </div>
+<!-- ===== Carousel ===== -->
+<div class="container-fluid px-0">
+  <div id="skillCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <?php
+      // If you've already included the DB earlier on the page, remove this line.
+      include __DIR__ . '/includes/db_connect.inc';
+
+      /**
+       * Resolve a DB value (mixed: "2.png" OR "images/skills/2.png" OR "/images/skills/2.png")
+       * into a working web URL. We try several candidates and return the first that exists on disk.
+       * Uses __DIR__ (c:\xampp\htdocs\wp\a2) so it's robust on Windows + XAMPP.
+       */
+      function resolve_skill_image_url(string $dbValue): string {
+          $clean = trim($dbValue);
+          $clean = ltrim($clean, "/\\");                // remove leading slashes/backslashes
+
+          // Prefer filename only
+          $fileOnly = basename($clean);
+
+          // Candidate web URLs (both current and legacy locations)
+          $candidates = [
+              "/wp/a2/assets/images/skills/{$fileOnly}", // current location
+              "/wp/a2/assets/{$clean}",                  // if DB had "images/skills/2.png"
+              "/wp/a2/images/skills/{$fileOnly}",        // legacy folder (if you used it earlier)
+              "/wp/a2/{$clean}",                         // last-ditch: honor whatever is in DB under /wp/a2/
+          ];
+
+          foreach (array_unique($candidates) as $url) {
+              // Map web URL to filesystem path relative to this file’s folder (/wp/a2)
+              // e.g. "/wp/a2/assets/images/skills/2.png" -> "assets/images/skills/2.png"
+              $relative = preg_replace('#^/wp/a2/#', '', $url);
+              $fs = __DIR__ . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relative);
+              if (file_exists($fs)) {
+                  return $url;
+              }
+          }
+          // If none exist, return the first candidate (so you can see which URL it's trying)
+          return $candidates[0];
+      }
+
+      // Grab latest 5 skills for the carousel
+      $sql = "SELECT skill_id, title, image_path
+              FROM skills
+              ORDER BY created_at DESC
+              LIMIT 5";
+      $result = $conn->query($sql);
+
+      if ($result && $result->num_rows > 0) {
+          $isActive = true;
+          while ($row = $result->fetch_assoc()) {
+              $id    = (int)$row['skill_id'];
+              $title = htmlspecialchars($row['title']);
+              $img   = resolve_skill_image_url((string)$row['image_path']);
+
+              // DEBUG (optional): view-source to see what URL it picked
+              // echo "<!-- IMG DEBUG: {$row['image_path']} -> {$img} -->\n";
+
+              echo '
+              <div class="carousel-item ' . ($isActive ? 'active' : '') . '">
+                <a href="details.php?id=' . $id . '">
+                  <img src="' . htmlspecialchars($img) . '" class="d-block w-100 vh-50 object-fit-cover" alt="' . $title . '">
+                  <div class="carousel-caption">
+                    <h5>' . $title . '</h5>
+                  </div>
+                </a>
+              </div>';
+              $isActive = false;
+          }
+      } else {
+          echo '<p class="text-center my-4">No skills available yet.</p>';
+      }
+      ?>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#skillCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#skillCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
         <!-- ===== Skill Grid ===== -->
-        <!-- ===== Skill Grid (Dynamic from DB) ===== -->
         <?php
 include __DIR__ . '/includes/db_connect.inc';
 

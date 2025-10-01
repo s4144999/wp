@@ -59,3 +59,29 @@ document.addEventListener('DOMContentLoaded', () => {//waits for the page to loa
         }
     });
 });
+// Lightbox for details page (and anywhere else)
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('lightboxModal');
+    if (!modal) return;
+
+    modal.addEventListener('show.bs.modal', function (e) {
+        const trigger = e.relatedTarget;                 // the <a> that opened the modal
+        if (!trigger) return;
+
+        const href = trigger.getAttribute('href');      // full image URL
+        const title = trigger.dataset.title || '';
+
+        const imgEl = modal.querySelector('#lightboxImg');
+        const titleEl = modal.querySelector('#lightboxTitle');
+
+        imgEl.src = href;
+        imgEl.alt = title;
+        titleEl.textContent = title;
+    });
+
+    // optional: clear src when closing
+    modal.addEventListener('hidden.bs.modal', function () {
+        const imgEl = modal.querySelector('#lightboxImg');
+        if (imgEl) imgEl.src = '';
+    });
+});

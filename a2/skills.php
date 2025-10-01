@@ -28,49 +28,49 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Beginner Guitar Lessons</td>
+                                <td><a href="details.php?id=1">Beginner Guitar Lessons</a></td>
                                 <td>Music</td>
                                 <td>Beginner</td>
                                 <td>30.00</td>
                             </tr>
                             <tr>
-                                <td>Intermediate Fingerstyle</td>
+                                <td><a href="details.php?id=2">Intermediate Fingerstyle</a></td>
                                 <td>Music</td>
                                 <td>Intermediate</td>
                                 <td>45.00</td>
                             </tr>
                             <tr>
-                                <td>Artisan Bread Baking</td>
+                                <td><a href="details.php?id=3">Artisan Bread Baking</a></td>
                                 <td>Cooking</td>
                                 <td>Beginner</td>
                                 <td>25.00</td>
                             </tr>
                             <tr>
-                                <td>French Pastry Making</td>
+                                <td><a href="details.php?id=4">French Pastry Making</a></td>
                                 <td>Cooking</td>
                                 <td>Expert</td>
                                 <td>50.00</td>
                             </tr>
                             <tr>
-                                <td>Watercolor Basics</td>
+                                <td><a href="details.php?id=5">Watercolor Basics</a></td>
                                 <td>Art</td>
                                 <td>Beginner</td>
                                 <td>20.00</td>
                             </tr>
                             <tr>
-                                <td>Digital Illustration with Procreate</td>
+                                <td><a href="details.php?id=6">Digital Illustration with Procreate</a></td>
                                 <td>Art</td>
                                 <td>Intermediate</td>
                                 <td>40.00</td>
                             </tr>
                             <tr>
-                                <td>Morning Vinyasa Flow</td>
+                                <td><a href="details.php?id=7">Morning Vinyasa Flow</a></td>
                                 <td>Wellness</td>
                                 <td>Intermediate</td>
                                 <td>35.00</td>
                             </tr>
                             <tr>
-                                <td>Intro to PHP &amp; MySQL</td>
+                                <td><a href="details.php?id=8">Intro to PHP &amp; MySQL</a></td>
                                 <td>Programming</td>
                                 <td>Expert</td>
                                 <td>55.00</td>
