@@ -54,7 +54,7 @@ $imgUrl  = $IMG_DIR . basename($skill['image_path']);
         <img src="<?php echo $imgUrl; ?>" 
              alt="<?php echo htmlspecialchars($skill['title']); ?>" 
              class="img-thumbnail mb-3"
-             style="max-width:250px; cursor:pointer;">
+             style="max-width:250px;6dz cursor:pointer;">
     </a>
 <?php endif; ?> 
 

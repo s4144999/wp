@@ -67,9 +67,6 @@
               $title = htmlspecialchars($row['title']);
               $img   = resolve_skill_image_url((string)$row['image_path']);
 
-              // DEBUG (optional): view-source to see what URL it picked
-              // echo "<!-- IMG DEBUG: {$row['image_path']} -> {$img} -->\n";
-
               echo '
               <div class="carousel-item ' . ($isActive ? 'active' : '') . '">
                 <a href="details.php?id=' . $id . '">
@@ -98,13 +95,13 @@
 
         <!-- ===== Skill Grid ===== -->
         <?php
-include __DIR__ . '/includes/db_connect.inc';
+        include __DIR__ . '/includes/db_connect.inc';
 
-$sql = "SELECT skill_id, title, description, rate_per_hr, image_path 
+        $sql = "SELECT skill_id, title, description, rate_per_hr, image_path 
         FROM skills 
         ORDER BY created_at DESC 
         LIMIT 4";
-$result = $conn->query($sql);
+        $result = $conn->query($sql);
 
 
 echo '<div class="row">';
