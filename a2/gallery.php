@@ -78,7 +78,7 @@ $result = $conn->query($sql);
   <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center">
-        <img id="lightboxImg" src="" class="img-fluid rounded" alt="">
+        <img id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="img-fluid rounded" alt="">
         <div id="lightboxTitle" class="p-2 fw-semibold"></div>
         <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Close</button>
       </div>
