@@ -6,7 +6,7 @@ include __DIR__ . '/db_connect.inc';
 $title       = $_POST['title'] ?? '';
 $description = $_POST['description'] ?? '';
 $category    = $_POST['category'] ?? '';
-$rate        = $_POST['rate'] ?? '';
+$rate        = $_POST['rate_per_hr'] ?? '';
 $level       = $_POST['level'] ?? '';
 
 // Image upload
