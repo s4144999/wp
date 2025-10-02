@@ -1,7 +1,7 @@
  <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
-                    <img src="images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
+                    <img src="assets/images/SkillSwap_logo.png" alt="SkillSwap Logo" class="img-fluid" />
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav me-auto">
