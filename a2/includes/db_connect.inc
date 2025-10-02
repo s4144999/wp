@@ -31,8 +31,5 @@ if (!$conn) {
 // Set charset to UTF-8 for proper character handling
 mysqli_set_charset($conn, "utf8");
 
-// Optional: Enable error reporting for development
-if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-}
+
 ?>
