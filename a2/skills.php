@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-   <?php include 'includes/header.inc'; ?>
-
+<head>
+<?php include 'includes/header.inc'; ?>
+</head>
 
 <body>
-    <?php include 'includes/nav.inc'; ?>
+<?php include 'includes/nav.inc'; ?>
 
 
     <main class="container mt-4">   
@@ -83,7 +83,7 @@
         </div>
     </main>
 
-    <!---->
+  
 
   <?php include 'includes/footer.inc'; ?>
 
