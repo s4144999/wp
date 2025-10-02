@@ -11,57 +11,63 @@
   <p class="mb-4">Browse the latest skills shared by our community.</p>
 
   <?php
-  // DB once
-  include __DIR__ . '/includes/db_connect.inc';
+include __DIR__ . '/includes/db_connect.inc';
 
-  // App base, image paths
-  $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');           // e.g. /wp/a2 or /~id/wp/a2
-  $IMG_WEB  = $APP_BASE . '/assets/images/skills/';                   // web path in <img src>
-  $IMG_FS   = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . $IMG_WEB;       // filesystem path for check
-  $DEFAULT  = $IMG_WEB . 'default.png';
+$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');      // /~s4144999/wp/a2
+$IMG_WEB  = $APP_BASE . '/assets/images/skills/';              // URL for <img src>
+$IMG_FS   = __DIR__ . '/assets/images/skills/';                // DISK path
+$DEFAULT  = $IMG_WEB . 'default.png';
 
-  // Latest 5 for the carousel
-  $res = $conn->query("
-    SELECT skill_id, title, image_path
-    FROM skills
-    ORDER BY created_at DESC, skill_id DESC
-    LIMIT 5
-  ");
-  ?>
+$res = $conn->query("
+  SELECT skill_id, title, image_path
+  FROM skills
+  ORDER BY created_at DESC, skill_id DESC
+  LIMIT 5
+");
+?>
+<div class="container-fluid px-0">
+  <div id="skillCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <?php if ($res && $res->num_rows > 0):
+        $active = 'active';
+        while ($row = $res->fetch_assoc()):
+          $id    = (int)$row['skill_id'];
+          $title = htmlspecialchars($row['title']);
 
-  <!-- ===== Carousel ===== -->
-  <div class="container-fluid px-0">
-    <div id="skillCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <?php if ($res && $res->num_rows > 0): 
-          $active = 'active';
-          while ($row = $res->fetch_assoc()):
-            $id    = (int)$row['skill_id'];
-            $title = htmlspecialchars($row['title']);
-            $file  = basename((string)$row['image_path']);
-            $src   = is_file($IMG_FS . $file) ? ($IMG_WEB . $file) : $DEFAULT;
-        ?>
-          <div class="carousel-item <?= $active ?>">
-            <a href="<?= $APP_BASE ?>/details.php?id=<?= $id ?>">
-              <img src="<?= htmlspecialchars($src) ?>" class="d-block w-100 vh-50 object-fit-cover" alt="<?= $title ?>">
-              <div class="carousel-caption">
-                <h5><?= $title ?></h5>
-              </div>
-            </a>
-          </div>
-        <?php $active = ''; endwhile; else: ?>
-          <p class="text-center my-4">No skills available yet.</p>
-        <?php endif; ?>
-      </div>
+          // --- sanitize the DB value ---
+          $file  = basename(trim((string)$row['image_path'])); // "1.png" (strip spaces/paths)
+          $fs    = $IMG_FS . $file;
+          $src   = $IMG_WEB . rawurlencode($file);             // encode spaces etc.
 
-      <button class="carousel-control-prev" type="button" data-bs-target="#skillCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#skillCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
+          // If disk file not readable, fall back
+          if (!is_readable($fs)) {
+            // optional: log to PHP error log so you can see what's wrong
+            // error_log("Carousel image missing or unreadable: $fs");
+            $src = $DEFAULT;
+          }
+      ?>
+        <div class="carousel-item <?= $active ?>">
+          <a href="<?= $APP_BASE ?>/details.php?id=<?= $id ?>">
+            <img src="<?= htmlspecialchars($src) ?>" class="d-block w-100 vh-50 object-fit-cover" alt="<?= $title ?>">
+            <div class="carousel-caption">
+              <h5><?= $title ?></h5>
+            </div>
+          </a>
+        </div>
+      <?php $active = ''; endwhile; else: ?>
+        <p class="text-center my-4">No skills available yet.</p>
+      <?php endif; ?>
     </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#skillCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#skillCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
   </div>
+</div>
+
 
   <!-- ===== Latest 4 skill cards ===== -->
   <?php

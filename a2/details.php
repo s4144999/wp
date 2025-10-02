@@ -21,7 +21,7 @@ $stmt->close();
 $conn->close();
 
 /* Build image URL (your images are in /wp/a2/assets/images/skills/) */
-$IMG_DIR = '/wp/a2/assets/images/skills/';            // note the trailing slash
+$IMG_DIR = '/wp/a2/assets/images/skills/';           
 $imgUrl  = $IMG_DIR . basename((string)$skill['image_path']);
 ?>
 <!DOCTYPE html>
