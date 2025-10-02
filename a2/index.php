@@ -17,14 +17,9 @@
   <div id="skillCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
     <div class="carousel-inner">
       <?php
-      // If you've already included the DB earlier on the page, remove this line.
       include __DIR__ . '/includes/db_connect.inc';
 
-      /**
-       * Resolve a DB value (mixed: "2.png" OR "images/skills/2.png" OR "/images/skills/2.png")
-       * into a working web URL. We try several candidates and return the first that exists on disk.
-       * Uses __DIR__ (c:\xampp\htdocs\wp\a2) so it's robust on Windows + XAMPP.
-       */
+
       function resolve_skill_image_url(string $dbValue): string {
           $clean = trim($dbValue);
           $clean = ltrim($clean, "/\\");                // remove leading slashes/backslashes
@@ -112,8 +107,7 @@ if ($result && $result->num_rows > 0) {
         echo "
         <div class='col-md-3 col-sm-6 mb-4 skill-card'>
             <h5>" . htmlspecialchars($row['title']) . "</h5>
-            <p>" . htmlspecialchars($row['description']) . "</p>
-            <p>Rate: $" . htmlspecialchars($row['rate_per_hr']) . "/hr</p>
+          <p>Rate: $" . htmlspecialchars($row['rate_per_hr']) . "/hr</p>
             <a href='details.php?id={$id}' class='btn btn-primary'>View Details</a>
         </div>";
     }

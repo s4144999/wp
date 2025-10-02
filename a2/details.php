@@ -27,7 +27,7 @@ $stmt->close();
 $conn->close();
 
 // Define correct image path
-$IMG_DIR = '/wp/a2/images/skills/';
+$IMG_DIR = '/wp/a2/assets/images/skills/';
 $imgUrl  = $IMG_DIR . basename($skill['image_path']);
 
 
@@ -81,10 +81,7 @@ $imgUrl  = $IMG_DIR . basename($skill['image_path']);
     </div>
 
     <?php include 'includes/footer.inc'; ?> 
-
-    <!-- Scripts -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="/wp/a2/assets/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/wp/a2/assets/js/scripts.js"></script>  
 </body>
 </html>
