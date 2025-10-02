@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
   <?php include 'includes/header.inc'; ?>
-</head>
+
 <body>
 <?php include 'includes/nav.inc'; ?>
 
