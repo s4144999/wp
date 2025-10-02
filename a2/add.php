@@ -46,11 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) {
         $errors[] = 'Image is required.';
     } else {
-        // Limit ~3MB and allow common types
-        $maxBytes = 3 * 1024 * 1024;
-        if ($_FILES['image']['size'] > $maxBytes) {
-            $errors[] = 'Image is too large (max 3MB).';
-        }
+        
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mime  = finfo_file($finfo, $_FILES['image']['tmp_name']);
         finfo_close($finfo);
@@ -173,7 +169,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="mb-3">
             <label for="image" class="form-label required">Skill Image</label>
             <input type="file" id="image" name="image" class="form-control" <?= $done ? '' : 'required' ?>>
-            <div class="form-text">PNG, JPG, GIF, WEBP • Max 3MB</div>
         </div>
 
         <button type="submit" class="btn btn-brand">Submit</button>

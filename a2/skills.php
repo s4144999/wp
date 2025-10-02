@@ -13,7 +13,7 @@
         <h2 class="mb-4">All Skills</h2>
         <div class="row g-4 align-items-start g-4 g-lg-5">
             <div class="col-12 col-lg-5 mb-4 mb-lg-0">
-                <img src="images/skills_banner.png" alt="Skills banner" class="img-fluid">
+                <img src="assets/images/skills_banner.png" alt="Skills banner" class="img-fluid">
             </div>
             <div class="col-12 col-lg-7 ps-lg-4s">
                 <div class="table-responsive mt-3">
