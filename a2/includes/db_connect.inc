@@ -19,7 +19,7 @@ if (strpos($_SERVER['HTTP_HOST'], 'csit.rmit.edu.au') !== false) {
 }
 
 // Create connection using MySQLi
-$conn = mysqli_connect($host, $username, $password, $database);
+$conn = mysqli_connect($host, $user, $pass, $dbname);
 
 // Check connection
 if (!$conn) {
