@@ -4,13 +4,8 @@ $user = "root";
 $pass = "";       
 $dbname = "skillswap";  
 
-$conn = new mysqli($host, $user, $pass, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if (strpos($_SERVER['HTTP_HOST'], 'csit.rmit.edu.au') !== false) {
+if (strpos($_SERVER['HTTP_HOST'], 'csit.rmit.edu.au') != false) {
     // Production settings for Jacob 5
     $host = 'talsprddb02.int.its.rmit.edu.au';
     $user = 's4144999';  // Your student ID as username
