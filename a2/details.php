@@ -20,43 +20,52 @@ $skill = $result->fetch_assoc();
 $stmt->close();
 $conn->close();
 
-/* Build image URL (your images are in /wp/a2/assets/images/skills/) */
-$IMG_DIR = '/wp/a2/assets/images/skills/';           
-$imgUrl  = $IMG_DIR . basename((string)$skill['image_path']);
+/* ---------- Paths that work on localhost and Titan ---------- */
+$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');      // e.g. /wp/a2  or  /~s4144999/wp/a2
+$IMG_WEB  = $APP_BASE . '/assets/images/skills/';              // web URL for <img src>
+$IMG_FS   = __DIR__ . '/assets/images/skills/';                // filesystem path
+$DEFAULT  = $IMG_WEB . 'default.png';
+
+/* Build final image URL safely */
+$file   = basename(trim((string)$skill['image_path']));        // "1.png" (strip spaces/paths)
+$fsPath = $IMG_FS . $file;
+$imgUrl = (is_readable($fsPath) && $file !== '')
+        ? ($IMG_WEB . rawurlencode($file))
+        : $DEFAULT;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title><?= htmlspecialchars($skill['title']) ?> - Skill Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title><?= htmlspecialchars($skill['title']) ?> - Skill Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
   <?php include 'includes/header.inc'; ?>
   <?php include 'includes/nav.inc'; ?>
 
   <div class="container my-5">
-      <h1 class="mb-4"><?= htmlspecialchars($skill['title']) ?></h1>
+    <h1 class="mb-4"><?= htmlspecialchars($skill['title']) ?></h1>
 
-      <?php if (!empty($skill['image_path'])): ?>
-        <a href="<?= htmlspecialchars($imgUrl) ?>"
-           data-bs-toggle="modal"
-           data-bs-target="#lightboxModal"
-           data-title="<?= htmlspecialchars($skill['title']) ?>">
-          <img src="<?= htmlspecialchars($imgUrl) ?>"
-               alt="<?= htmlspecialchars($skill['title']) ?>"
-               class="img-thumbnail mb-3"
-               style="max-width:250px; cursor:pointer;">
-        </a>
-      <?php endif; ?>
+    <?php if (!empty($skill['image_path'])): ?>
+      <a href="<?= htmlspecialchars($imgUrl) ?>"
+         data-bs-toggle="modal"
+         data-bs-target="#lightboxModal"
+         data-title="<?= htmlspecialchars($skill['title']) ?>">
+        <img src="<?= htmlspecialchars($imgUrl) ?>"
+             alt="<?= htmlspecialchars($skill['title']) ?>"
+             class="img-thumbnail mb-3"
+             style="max-width:250px; cursor:pointer;">
+      </a>
+    <?php endif; ?>
 
-      <p><?= nl2br(htmlspecialchars($skill['description'])) ?></p>
-      <p><strong>Category:</strong> <?= htmlspecialchars($skill['category']) ?></p>
-      <p><strong>Level:</strong> <?= htmlspecialchars($skill['level']) ?></p>
-      <p><strong>Rate:</strong> $<?= htmlspecialchars($skill['rate_per_hr']) ?>/hr</p>
-      <p><strong>Created At:</strong> <?= htmlspecialchars($skill['created_at']) ?></p>
+    <p><?= nl2br(htmlspecialchars($skill['description'])) ?></p>
+    <p><strong>Category:</strong> <?= htmlspecialchars($skill['category']) ?></p>
+    <p><strong>Level:</strong> <?= htmlspecialchars($skill['level']) ?></p>
+    <p><strong>Rate:</strong> $<?= htmlspecialchars($skill['rate_per_hr']) ?>/hr</p>
+    <p><strong>Created At:</strong> <?= htmlspecialchars($skill['created_at']) ?></p>
 
-      <a href="index.php" class="btn btn-secondary mt-3">← Back to All Skills</a>
+    <a href="<?= $APP_BASE ?>/index.php" class="btn btn-secondary mt-3">← Back to All Skills</a>
   </div>
 
   <!-- Lightbox Modal -->
@@ -77,8 +86,18 @@ $imgUrl  = $IMG_DIR . basename((string)$skill['image_path']);
   <!-- Bootstrap bundle (required for modal) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Your modal JS -->
-  <script src="/wp/a2/assets/js/script.js"></script>
-
+  <!-- Inline, tiny modal script (no external path headaches) -->
+  <script>
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[data-bs-target="#lightboxModal"]');
+      if (!a) return;
+      e.preventDefault();
+      const imgEl   = document.getElementById('lightboxImg');
+      const titleEl = document.getElementById('lightboxTitle');
+      imgEl.src = a.getAttribute('href');
+      imgEl.alt = a.dataset.title || '';
+      titleEl.textContent = a.dataset.title || '';
+    });
+  </script>
 </body>
 </html>
