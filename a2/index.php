@@ -16,7 +16,7 @@ include __DIR__ . '/includes/db_connect.inc';
 $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');      // /~s4144999/wp/a2
 $IMG_WEB  = $APP_BASE . '/assets/images/skills/';              // URL for <img src>
 $IMG_FS   = __DIR__ . '/assets/images/skills/';                // DISK path
-$DEFAULT  = $IMG_WEB . 'default.png';
+$DEFAULT  = $IMG_WEB . '1.png';
 
 $res = $conn->query("
   SELECT skill_id, title, image_path
