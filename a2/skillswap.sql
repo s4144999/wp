@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2025 at 01:50 AM
+-- Generation Time: Oct 02, 2025 at 04:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,7 +50,8 @@ INSERT INTO `skills` (`skill_id`, `title`, `description`, `category`, `image_pat
 (5, 'Watercolor Basics', 'Introduction to watercolor painting.', 'Art', '5.png', 20.00, 'Beginner', '2025-09-23 00:06:27'),
 (6, 'Digital Illustration with Procreate', 'Create stunning illustrations using Procreate.', 'Art', '6.png', 40.00, 'Intermediate', '2025-09-23 00:06:27'),
 (7, 'Morning Vinyasa Flow', 'A refreshing yoga flow for mornings.', 'Wellness', '7.png', 35.00, 'Intermediate', '2025-09-23 00:06:27'),
-(8, 'Intro to PHP & MySQL', 'Get started with backend development.', 'Programming', '8.png', 55.00, 'Expert', '2025-09-23 00:06:27');
+(8, 'Intro to PHP & MySQL', 'Get started with backend development.', 'Programming', '8.png', 55.00, 'Expert', '2025-09-23 00:06:27'),
+(16, 'balll', 'ball balll balll', 'foorball', '2024.000_Student_Blog_Skills_Employers_Look_For_1280x660-1.jpg', 222.00, 'Intermediate', '2025-10-02 12:07:30');
 
 --
 -- Indexes for dumped tables
@@ -70,7 +71,7 @@ ALTER TABLE `skills`
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `skill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
