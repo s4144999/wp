@@ -2,24 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php include 'includes/header.inc'; ?> <!-- ensure Bootstrap CSS is included here -->
+  <?php include 'includes/header.inc'; ?> <!-- Bootstrap CSS, meta, etc. -->
 </head>
 
 <?php
 include __DIR__ . '/includes/db_connect.inc';
 
-$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'); // e.g. /wp/a2
-$IMG_DIR  = '/wp/a2/assets/images/skills/';              // NOTE trailing slash
+/* ------- Paths that work on localhost and Titan -------- */
+$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');    // e.g. /wp/a2 or /~s4144999/wp/a2
+$IMG_WEB  = $APP_BASE . '/assets/images/skills/';            // web path for <img src>
+$IMG_FS   = __DIR__ . '/assets/images/skills/';              // filesystem path
+$DEFAULT  = $IMG_WEB . 'default.png';
 
-function resolve_skill_image_url(string $p): string {
-    global $IMG_DIR;
-    $p = trim($p);
-    if ($p === '') return $IMG_DIR . 'default.png';
-    if (preg_match('~^https?://~i', $p)) return $p; // full URL
-    if ($p[0] === '/') return $p;                   // already absolute
-    return $IMG_DIR . basename($p);
+/* Return a safe, existing image URL (or default) */
+function skill_img_url(string $p) : string {
+    global $IMG_WEB, $IMG_FS, $DEFAULT;
+    $file = basename(trim($p));               // keep only the filename
+    if ($file === '') return $DEFAULT;
+
+    $fsPath = $IMG_FS . $file;                // disk path
+    return is_readable($fsPath)
+        ? ($IMG_WEB . rawurlencode($file))    // serve the real image
+        : $DEFAULT;                           // fallback
 }
 
+/* Pull images */
 $sql = "SELECT skill_id, title, image_path
         FROM skills
         ORDER BY created_at DESC, skill_id DESC";
@@ -37,27 +44,29 @@ $result = $conn->query($sql);
         <?php while ($row = $result->fetch_assoc()):
           $id    = (int)$row['skill_id'];
           $title = htmlspecialchars($row['title']);
-          $img   = resolve_skill_image_url((string)$row['image_path']);
+          $img   = skill_img_url((string)$row['image_path']);
         ?>
-        <div class="col">
-  <figure class="gallery-item m-0 text-center">
-    <!-- Image opens modal -->
-    <a href="<?= htmlspecialchars($img) ?>"
-       data-bs-toggle="modal"
-       data-bs-target="#lightboxModal"
-       data-title="<?= $title ?>">
-      <!-- fixed aspect ratio box -->
-      <div class="ratio ratio-16x9 rounded overflow-hidden">
-        <img src="<?= htmlspecialchars($img) ?>" class="w-100 h-100" style="object-fit:cover;" alt="<?= $title ?>">
-      </div>
-    </a>
-    <!-- Title links to details page -->
-    <figcaption class="mt-2">
-      <a href="<?= $APP_BASE ?>/details.php?id=<?= $id ?>"><?= $title ?></a>
-    </figcaption>
-  </figure>
-</div>
-
+          <div class="col">
+            <figure class="gallery-item m-0 text-center">
+              <!-- Image opens modal -->
+              <a href="<?= htmlspecialchars($img) ?>"
+                 data-bs-toggle="modal"
+                 data-bs-target="#lightboxModal"
+                 data-title="<?= $title ?>">
+                <!-- fixed aspect ratio box -->
+                <div class="ratio ratio-16x9 rounded overflow-hidden">
+                  <img src="<?= htmlspecialchars($img) ?>"
+                       class="w-100 h-100"
+                       style="object-fit:cover;"
+                       alt="<?= $title ?>">
+                </div>
+              </a>
+              <!-- Title links to details page -->
+              <figcaption class="mt-2">
+                <a href="<?= $APP_BASE ?>/details.php?id=<?= $id ?>"><?= $title ?></a>
+              </figcaption>
+            </figure>
+          </div>
         <?php endwhile; ?>
       <?php else: ?>
         <p>No skills yet. <a href="<?= $APP_BASE ?>/add.php">Add one?</a></p>
@@ -82,18 +91,18 @@ $result = $conn->query($sql);
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-  // modal: grab image + caption
-  const imgEl = document.getElementById('lightboxImg');
-  const titleEl = document.getElementById('lightboxTitle');
+    // modal: grab image + caption
+    const imgEl   = document.getElementById('lightboxImg');
+    const titleEl = document.getElementById('lightboxTitle');
 
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[data-bs-target="#lightboxModal"]');
-    if (!a) return;
-    e.preventDefault();
-    imgEl.src = a.getAttribute('href');
-    imgEl.alt = a.dataset.title || '';
-    titleEl.textContent = a.dataset.title || '';
-  });
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[data-bs-target="#lightboxModal"]');
+      if (!a) return;
+      e.preventDefault();
+      imgEl.src = a.getAttribute('href');
+      imgEl.alt = a.dataset.title || '';
+      titleEl.textContent = a.dataset.title || '';
+    });
   </script>
 </body>
 </html>
