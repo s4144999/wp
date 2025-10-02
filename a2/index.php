@@ -13,9 +13,9 @@
   <?php
 include __DIR__ . '/includes/db_connect.inc';
 
-$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');      // /~s4144999/wp/a2
-$IMG_WEB  = $APP_BASE . '/assets/images/skills/';              // URL for <img src>
-$IMG_FS   = __DIR__ . '/assets/images/skills/';                // DISK path
+$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');     
+$IMG_WEB  = $APP_BASE . '/assets/images/skills/';              
+$IMG_FS   = __DIR__ . '/assets/images/skills/';                
 $DEFAULT  = $IMG_WEB . '1.png';
 
 $res = $conn->query("

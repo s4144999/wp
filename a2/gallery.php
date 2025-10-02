@@ -1,9 +1,9 @@
 <?php /* /wp/a2/gallery.php */ ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
   <?php include 'includes/header.inc'; ?> <!-- Bootstrap CSS, meta, etc. -->
-</head>
+
 
 <?php
 include __DIR__ . '/includes/db_connect.inc';
