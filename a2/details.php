@@ -35,13 +35,16 @@ $imgUrl = (is_readable($fsPath) && $file !== '')
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars($skill['title']) ?> - Skill Details</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <?php include 'includes/header.inc';  ?>
+</head>
 
 <body>
-  <?php include 'includes/header.inc'; ?>
   <?php include 'includes/nav.inc'; ?>
 
   <div class="container my-5">
@@ -72,7 +75,7 @@ $imgUrl = (is_readable($fsPath) && $file !== '')
   <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content text-center">
-        <img id="lightboxImg" src="" class="img-fluid rounded" alt="Skill image">
+        <img id="lightboxImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" class="img-fluid rounded" alt="Skill image">
         <p id="lightboxTitle" class="mt-2 fw-bold"></p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
