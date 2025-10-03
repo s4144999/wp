@@ -35,16 +35,17 @@ $imgUrl = (is_readable($fsPath) && $file !== '')
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= htmlspecialchars($skill['title']) ?> - Skill Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <head>
 
-  <?php include 'includes/header.inc';  ?>
+  <!-- keep <link> and <style> here or in the include -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <?php include 'includes/header.inc'; ?>
+
 </head>
 
 <body>
+
   <?php include 'includes/nav.inc'; ?>
 
   <div class="container my-5">
@@ -100,6 +101,7 @@ $imgUrl = (is_readable($fsPath) && $file !== '')
       imgEl.src = a.getAttribute('href');
       imgEl.alt = a.dataset.title || '';
       titleEl.textContent = a.dataset.title || '';
+      
     });
   </script>
 </body>

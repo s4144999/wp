@@ -64,12 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
       $errors[] = 'File too large. Max 5MB allowed.';
     }
 
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime  = $finfo ? finfo_file($finfo, $fileTmp) : '';
-    if ($finfo) finfo_close($finfo);
-    if ($mime && !in_array($mime, $allowedMime, true)) {
-      $errors[] = 'Invalid image content (MIME).';
-    }
+   
 
     if (!$errors) {
       if (!is_dir($UPLOAD_FS) && !mkdir($UPLOAD_FS, 0755, true)) {
@@ -171,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     </div>
 
     <div class="mb-3">
-      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-brand">Submit</button>
     </div>
   </form>
 </main>
