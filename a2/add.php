@@ -171,7 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     </div>
 
     <div class="mb-3">
-<button type="submit" class="btn btn-brand">Submit</button>
+      <button type="submit" name="submit" class="btn btn-brand">Submit</button>
+
     </div>
   </form>
 </main>
