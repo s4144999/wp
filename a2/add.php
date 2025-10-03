@@ -10,6 +10,13 @@
 <?php
 include __DIR__ . '/includes/db_connect.inc';
 
+// show which DB you’re connected to (debug)
+if ($res = $conn->query("SELECT @@hostname AS host, DATABASE() AS db")) {
+    $row = $res->fetch_assoc();
+    echo '<pre>DB host: ' . htmlspecialchars($row['host']) . ' | DB: ' . htmlspecialchars($row['db']) . '</pre>';
+    $res->free();
+}
+
 $errors  = [];
 $success = false;
 
@@ -68,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $mime  = $finfo ? finfo_file($finfo, $fileTmp) : '';
     if ($finfo) finfo_close($finfo);
     if ($mime && !in_array($mime, $allowedMime, true)) {
-      $errors[] = 'Invalid image content (MIME).';
+      $errors[] = 'Invalid image content.';
     }
 
     if (!$errors) {
@@ -84,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     }
   }
 
+  // Single, clean INSERT
   if (!$errors && $newName !== null) {
     $sql  = "INSERT INTO skills (title, description, category, rate_per_hr, level, image_path)
              VALUES (?, ?, ?, ?, ?, ?)";
@@ -91,28 +99,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     if (!$stmt) {
       $errors[] = 'Database error (prepare): ' . $conn->error;
     } else {
-      // types: s s s d s s  -> WITHOUT SPACES: 'sss dss' -> correct is:
-      $stmt->bind_param('sssdss', $title, $description, $category, $rate, $level, $newName); // placeholder line
-
-      // Correct final line (no spaces at all):
       $stmt->bind_param('sssdss', $title, $description, $category, $rate, $level, $newName);
+      if ($stmt->execute()) {
+        $success = true;
+      } else {
+        $errors[] = 'Database error (execute): ' . $stmt->error;
+        @unlink($UPLOAD_FS . $newName); // rollback saved file on failure
+      }
+      $stmt->close();
     }
-
-    // The exact correct string is 'sss dss' without spaces -> 'sssdss'
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sssdss', $title, $description, $category, $rate, $level, $newName);
-
-    if ($stmt->execute()) {
-      $success = true;
-    } else {
-      $errors[] = 'Database error (execute): ' . $stmt->error;
-      // Optional rollback of file:
-      @unlink($UPLOAD_FS . $newName);
-    }
-    $stmt->close();
   }
 }
 ?>
+
 
 <main class="container py-3">
   <h2 class="mb-4">Add New Skill</h2>
