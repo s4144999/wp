@@ -95,7 +95,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="password" class="form-control" id="confirm" name="confirm" required>
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">Register</button>
+<button type="submit" class="w-100" 
+style="background-color:#c84c0c; color:white; border:none; padding:10px; font-weight:600; border-radius:4px;">
+  Register
+</button>
+
+
 
         <p class="mt-3 text-center">
             Already have an account? <a href="login.php">Login here</a>.

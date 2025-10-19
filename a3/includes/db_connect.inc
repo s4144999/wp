@@ -31,5 +31,5 @@ if (!$conn) {
 // Set charset to UTF-8 for proper character handling
 mysqli_set_charset($conn, "utf8");
 
-
 ?>
+
