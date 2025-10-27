@@ -15,13 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Validate inputs
     if (empty($username) || empty($email) || empty($password) || empty($confirm)) {
-        $message = "<div class='alert alert-warning'>⚠️ Please fill in all fields.</div>";
+        $message = "<div class='alert alert-warning'> Please fill in all fields.</div>";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $message = "<div class='alert alert-warning'>⚠️ Invalid email address.</div>";
+        $message = "<div class='alert alert-warning'> Invalid email address.</div>";
     } elseif ($password !== $confirm) {
-        $message = "<div class='alert alert-danger'>❌ Passwords do not match.</div>";
+        $message = "<div class='alert alert-danger'> Passwords do not match.</div>";
     } elseif (strlen($password) < 6) {
-        $message = "<div class='alert alert-warning'>⚠️ Password must be at least 6 characters long.</div>";
+        $message = "<div class='alert alert-warning'> Password must be at least 6 characters long.</div>";
     } else {
         // Check if email already exists
         $check = $conn->prepare("SELECT user_id FROM users WHERE email = ?");
@@ -30,15 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $check->store_result();
 
         if ($check->num_rows > 0) {
-            $message = "<div class='alert alert-danger'>❌ Email already registered. Please login instead.</div>";
+            $message = "<div class='alert alert-danger'> Email already registered. Please login instead.</div>";
         } else {
             // Hash the password
             $hashed = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert user
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash, created_at)
-                                    VALUES (?, ?, ?, NOW())");
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password, joined_at)
+                        VALUES (?, ?, ?, NOW())");
             $stmt->bind_param("sss", $username, $email, $hashed);
+
 
             if ($stmt->execute()) {
                 $_SESSION['flash'] = "✅ Registration successful! Please login.";

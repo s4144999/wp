@@ -37,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header("Location: index.php");
                 exit;
             } else {
-                $message = "<div class='alert alert-danger'>❌ Incorrect password.</div>";
+                $message = "<div class='alert alert-danger'> Incorrect password.</div>";
             }
         } else {
-            $message = "<div class='alert alert-danger'>❌ No account found with that email.</div>";
+            $message = "<div class='alert alert-danger'> No account found with that email.</div>";
         }
         $stmt->close();
     }
