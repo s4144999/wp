@@ -8,7 +8,12 @@ if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
 $skill_id = (int)$_GET['id'];
 
 // Fetch skill
-$sql = "SELECT * FROM skills WHERE skill_id = ?";
+$sql = "
+SELECT s.*, u.username AS instructor_name, u.bio AS instructor_bio
+FROM skills s
+JOIN users u ON s.user_id = u.user_id
+WHERE s.skill_id = ?
+";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $skill_id);
 $stmt->execute();
@@ -67,7 +72,14 @@ $imgUrl = (is_readable($fsPath) && $file !== '')
     <p><strong>Category:</strong> <?= htmlspecialchars($skill['category']) ?></p>
     <p><strong>Level:</strong> <?= htmlspecialchars($skill['level']) ?></p>
     <p><strong>Rate:</strong> $<?= htmlspecialchars($skill['rate_per_hr']) ?>/hr</p>
+    <hr>
     <p><strong>Created At:</strong> <?= htmlspecialchars($skill['created_at']) ?></p>
+<p><strong>Instructor:</strong> 
+  <a href="<?= $APP_BASE ?>/instructor.php?name=<?= urlencode($skill['instructor_name']) ?>">
+    <?= htmlspecialchars($skill['instructor_name']) ?>
+  </a>
+</p>
+
 
     <a href="<?= $APP_BASE ?>/index.php" class="btn btn-secondary mt-3">← Back to All Skills</a>
   </div>
