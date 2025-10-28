@@ -1,16 +1,24 @@
-<?php /* /wp/a2/add.php */ ?>
+<?php
+/* /wp/a3/add.php (works for a2 too) */
+session_start();
+include __DIR__ . '/includes/db_connect.inc';
+
+// ---- Require login (so we have a real user_id for the FK) ----
+if (empty($_SESSION['user_id'])) {
+    $_SESSION['flash'] = "Please log in to add a skill.";
+    header("Location: login.php");
+    exit;
+}
+$user_id = (int)$_SESSION['user_id'];   // <-- will be inserted into skills.user_id
+?>
 <!DOCTYPE html>
 <html lang="en">
-
-  <?php include 'includes/header.inc'; ?>
-
+<?php include 'includes/header.inc'; ?>
 <body>
 <?php include 'includes/nav.inc'; ?>
 
 <?php
-include __DIR__ . '/includes/db_connect.inc';
-
-// show which DB you’re connected to (debug)
+// (Optional) show which DB you’re connected to (debug)
 if ($res = $conn->query("SELECT @@hostname AS host, DATABASE() AS db")) {
     $row = $res->fetch_assoc();
     echo '<pre>DB host: ' . htmlspecialchars($row['host']) . ' | DB: ' . htmlspecialchars($row['db']) . '</pre>';
@@ -91,15 +99,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     }
   }
 
-  // Single, clean INSERT
+  // ---- INSERT including user_id to satisfy the FK ----
   if (!$errors && $newName !== null) {
-    $sql  = "INSERT INTO skills (title, description, category, rate_per_hr, level, image_path)
-             VALUES (?, ?, ?, ?, ?, ?)";
+    $sql  = "INSERT INTO skills
+             (user_id, title, description, category, rate_per_hr, level, image_path)
+             VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
       $errors[] = 'Database error (prepare): ' . $conn->error;
     } else {
-      $stmt->bind_param('sssdss', $title, $description, $category, $rate, $level, $newName);
+      // i (user_id), s (title), s (desc), s (category), d (rate), s (level), s (image_path)
+      $stmt->bind_param('isssdss',
+          $user_id, $title, $description, $category, $rate, $level, $newName);
       if ($stmt->execute()) {
         $success = true;
       } else {
@@ -155,12 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
       <label for="level" class="form-label required">Level</label>
       <select id="level" name="level" class="form-select" required>
         <option value="" disabled <?= empty($_POST['level']) ? 'selected' : '' ?>>Select Level</option>
-        <?php
-          foreach (['Beginner','Intermediate','Expert'] as $lv) {
-            $sel = (($_POST['level'] ?? '') === $lv) ? 'selected' : '';
-            echo "<option $sel>" . htmlspecialchars($lv) . "</option>";
-          }
-        ?>
+        <?php foreach (['Beginner','Intermediate','Expert'] as $lv):
+              $sel = (($_POST['level'] ?? '') === $lv) ? 'selected' : ''; ?>
+          <option <?= $sel ?>><?= htmlspecialchars($lv) ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
 
@@ -171,7 +180,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
     <div class="mb-3">
       <button type="submit" name="submit" class="btn btn-brand">Submit</button>
-
     </div>
   </form>
 </main>

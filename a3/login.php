@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Verify password
             if (password_verify($password, $user['password'])) {
                 // Login successful → set session
-                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['user_id']  = (int)$user['user_id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['flash'] = "✅ Welcome back, " . htmlspecialchars($user['username']) . "!";
                 header("Location: index.php");
