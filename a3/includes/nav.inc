@@ -20,7 +20,7 @@ $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
       <ul class="navbar-nav ms-2">
         <li class="nav-item"><a class="nav-link text-white fw-semibold px-3" href="<?= $APP_BASE ?>/index.php">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white fw-semibold px-3" href="<?= $APP_BASE ?>/allskills.php" >All Skills</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold px-3" href="<?= $APP_BASE ?>/skills.php" >All Skills</a></li>
         <li class="nav-item"><a class="nav-link text-white fw-semibold px-3" href="<?= $APP_BASE ?>/gallery.php" >Gallery</a></li>
         <li class="nav-item"><a class="nav-link text-white fw-semibold px-3" href="<?= $APP_BASE ?>/add.php" >Add Skill</a></li>
       </ul>
