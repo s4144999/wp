@@ -30,7 +30,12 @@ $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
         <!-- Login/Logout Links -->
         <?php if (isset($_SESSION['username'])): ?>
           <span class="text-white fw-semibold me-3" style="font-size:0.9rem;">Hello, <?= htmlspecialchars($_SESSION['username']) ?></span>
-          <a href="<?= $APP_BASE ?>/logout.php" class="btn btn-outline-light btn-sm rounded-0 fw-semibold me-2" style="font-size:0.8rem; padding:3px 10px;">Logout</a>
+<a href="<?= $APP_BASE ?>/logout.php" 
+   style="color:white; font-weight:600; text-transform:uppercase; 
+          text-decoration:none; margin-left:10px;">
+   Logout
+</a>
+
         <?php else: ?>
           <a href="<?= $APP_BASE ?>/login.php" class="text-white fw-semibold me-3" style="text-decoration:none; font-size:0.9rem;">Login</a>
           <a href="<?= $APP_BASE ?>/register.php" class="text-white fw-semibold me-4" style="text-decoration:none; font-size:0.9rem;">Register</a>

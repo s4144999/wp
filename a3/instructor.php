@@ -75,7 +75,12 @@ function skill_img_url(string $p): string {
             <div class="card-body">
               <h6 class="fw-semibold"><a href="<?= $APP_BASE ?>/details.php?id=<?= $id ?>" class="text-decoration-none text-dark"><?= $title ?></a></h6>
               <p class="mb-1">Rate: $<?= $rate ?>/hr</p>
-              <a href="<?= $APP_BASE ?>/details.php?id=<?= $id ?>" class="btn btn-sm btn-outline-warning text-dark fw-bold px-3">View</a>
+<a href="details.php?id=<?= $id ?>" 
+   style="background-color:#c84c0c; color:#fff; border:none; border-radius:30px; 
+          padding:4px 14px; font-size:0.8rem; font-weight:600; 
+          text-transform:uppercase; text-decoration:none; display:inline-block;">
+   View
+</a>
             </div>
           </div>
         </div>
