@@ -42,13 +42,20 @@ $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
         <?php endif; ?>
 
         <!-- Search -->
-        <form class="d-flex" role="search">
-          <div class="input-group">
-            <span class="input-group-text bg-white border-0"><i class="material-icons" style="font-size:18px; color:#555;">search</i></span>
-            <input class="form-control border-0" type="search" placeholder="Search skills..." aria-label="Search"
-                   style="font-size:0.85rem; width:200px;">
-          </div>
-        </form>
+        <form class="d-flex" role="search" method="get" action="<?= $APP_BASE ?>/search.php">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input
+                            class="form-control border-start-0"
+                            type="search"
+                            name="q"
+                            value="<?= htmlspecialchars($_GET['q'] ?? '') ?>"
+                            placeholder="Search skills..."
+                            aria-label="Search">
+                    </div>
+                </form>
       </div>
     </div>
   </div>

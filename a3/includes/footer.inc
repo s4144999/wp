@@ -5,11 +5,33 @@
 ">
   <div class="container d-flex justify-content-between align-items-center">
     <div>
-      <a href="instructor.php?name=alice" class="text-light text-decoration-none me-2">Alice</a>
-      <a href="instructor.php?name=bob" class="text-light text-decoration-none me-2">Bob</a>
-      <a href="instructor.php?name=carol" class="text-light text-decoration-none me-2">Carol</a>
-      <a href="instructor.php?name=dave" class="text-light text-decoration-none me-2">Dave</a>
-      <a href="instructor.php?name=eve" class="text-light text-decoration-none">Eve</a>
+      <?php
+// --- open a short-lived connection just for the footer ---
+$__mainConn = $conn ?? null;                   // remember the page's $conn (if any)
+require __DIR__ . '/db_connect.inc';           // this creates a fresh $conn
+$__footConn = $conn;                           // keep a reference to the footer connection
+$conn = $__mainConn;                           // restore the page's $conn so we don't break anything
+
+$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+$links = [];
+if ($__footConn instanceof mysqli) {
+    if ($rs = $__footConn->query("SELECT username FROM users ORDER BY username")) {
+        while ($row = $rs->fetch_assoc()) {
+            $u   = (string)$row['username'];
+            $url = $APP_BASE . '/instructor.php?name=' . urlencode($u);
+            $links[] = '<a href="' . $url . '" class="text-light text-decoration-none me-2">'
+                     . htmlspecialchars($u) . '</a>';
+        }
+        $rs->free();
+    }
+    $__footConn->close();                      // close ONLY the footer connection
+}
+
+echo $links ? implode("\n      ", $links)
+            : '<span class="opacity-75">No instructors yet</span>';
+?>
+
     </div>
 
     <p class="mb-0 text-end">
