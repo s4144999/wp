@@ -4,7 +4,9 @@
 // search.php — Full-text search + category filter + pagination (prepared statements)
 
 include 'includes/header.inc';
+
 include 'includes/nav.inc';
+
 include __DIR__ . '/includes/db_connect.inc';
 
 // Force DB (consistent with rest of app)
@@ -14,9 +16,18 @@ if (method_exists($conn, 'select_db')) {
 
 // Image base (A3)
 $IMG_DIR = '/wp/a3/assets/images/skills/';
-if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'csit.rmit.edu.au') !== false) {
-    $IMG_DIR = '/~s4158210/wp/a3/assets/images/skills/';
-}
+// App base that works on localhost and Titan (e.g. /wp/a3 or /~s41xxxx/wp/a3)
+$APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+
+// Public URL base for images
+$IMG_DIR = $APP_BASE . '/assets/images/skills/';
+
+// Filesystem path so we can test file existence
+$IMG_FS  = __DIR__ . '/assets/images/skills/';
+
+// Optional placeholder shown when a file is missing
+$PLACEHOLDER = $IMG_DIR . 'placeholder.png';
+
 
 // Helpers
 function h($s)
