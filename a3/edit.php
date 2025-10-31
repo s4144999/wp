@@ -223,17 +223,15 @@ $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Level</label>
-          <select name="level" class="form-select" required>
-            <?php
-              $levels = ['Beginner','Intermediate','Expert'];
-              foreach ($levels as $lv) {
-                $sel = ($skill['level'] === $lv) ? 'selected' : '';
-                echo "<option $sel>" . htmlspecialchars($lv) . "</option>";
-              }
-            ?>
-          </select>
-        </div>
+  <label class="form-label" for="level">Level</label>
+  <select id="level" name="level" class="form-select" required aria-required="true">
+    <!-- Placeholder required for HTML validity when select is required -->
+    <option value="" disabled <?= empty($skill['level']) ? 'selected' : '' ?>>Choose level…</option>
+    <option value="Beginner"     <?= ($skill['level'] === 'Beginner')     ? 'selected' : '' ?>>Beginner</option>
+    <option value="Intermediate" <?= ($skill['level'] === 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
+    <option value="Expert"       <?= ($skill['level'] === 'Expert')       ? 'selected' : '' ?>>Expert</option>
+  </select>
+</div>
 
         <div class="mb-3">
           <label class="form-label">Replace image (optional)</label>
