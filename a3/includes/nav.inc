@@ -61,13 +61,3 @@ $APP_BASE = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
   </div>
 </nav>
 
-<style>
-  .nav-link:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .navbar-brand img {
-    vertical-align: middle;
-    filter: brightness(98%);
-  }
-</style>
